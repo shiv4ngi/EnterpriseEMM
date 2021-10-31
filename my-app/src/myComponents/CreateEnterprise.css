@@ -1,0 +1,46 @@
+.main {
+  text-align: -webkit-center;
+}
+.create-box {
+  background: #e5e5f6 !important;
+  border-radius: 3%;
+  box-shadow: none !important;
+  text-align: center;
+  color: #686666de !important;
+  min-height: 150px;
+  width: 150px;
+  cursor: pointer;
+}
+
+.create-box :hover {
+  color: #583d72;
+  text-shadow: 0 0 8px rgb(156, 141, 141);
+}
+
+.create-box:hover::before {
+  transform: scale(1.1);
+}
+
+@media screen and (max-width: 480px) {
+  .main {
+    text-align: -webkit-center;
+  }
+  .navbar-expand {
+    text-align: center;
+    flex-wrap: wrap !important;
+  }
+}
+
+.modal-content {
+  background-color: #efe5f6 !important;
+  color: #583d72;
+}
+
+.modal input:focus {
+  outline: none;
+  border-color: #b464be;
+}
+
+.action-btn {
+  background: linear-gradient(to top, #20002c, #cbb4d4);
+}

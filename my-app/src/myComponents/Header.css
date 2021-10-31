@@ -1,0 +1,16 @@
+.brand {
+  font-weight: 400px;
+  color: #fff;
+}
+
+.navbar {
+  background: linear-gradient(to right, #48436b, #6c5b7b, #ddb6d4);
+  /* background: linear-gradient(to left, #e8cbc0, #636fa4); */
+}
+
+.login-logo {
+  cursor: pointer;
+  color: #fff;
+  padding-right: 3%;
+  margin: 2%;
+}
