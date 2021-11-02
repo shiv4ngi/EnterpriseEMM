@@ -2,8 +2,14 @@ import { Navbar, Container, Form, FormControl, Button } from "react-bootstrap";
 import "./Header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faUser } from "@fortawesome/free-solid-svg-icons";
+// import { useHistory } from "react-router-dom";
 
 function Header() {
+  // const history = useHistory();
+  // const routeHandler = () => {
+  //   history.push("/");
+  // };
+
   const loginHandler = () => {
     alert(" User Logged In!!!");
   };
@@ -11,7 +17,7 @@ function Header() {
   return (
     <Navbar className="navbar" variant="dark">
       <Container fluid>
-        <Navbar.Brand className="brand" href="#">
+        <Navbar.Brand className="brand" href="/">
           Enterprise Mobility Management
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />

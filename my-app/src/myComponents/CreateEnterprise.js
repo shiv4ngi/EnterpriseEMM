@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./CreateEnterprise.css";
 import NewModal from "./NewModal";
 import Box from "@mui/material/Box";
@@ -7,22 +7,13 @@ import MediaCard from "./MediaCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { Card } from "@mui/material";
-import { useHistory } from "react-router-dom";
 
 function CreateEnterprise() {
   const [show, setShow] = useState(false);
-  const [enteredName, setEnteredName] = useState({});
-  const [enterpriseList, setEnterpriseList] = useState([
-    { name: "Enterprise", id: "g1" },
-  ]);
+  const [enterpriseList, setEnterpriseList] = useState([]);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  const history = useHistory();
-
-  const handleRoute = () => {
-    history.push("/configure");
-  };
+  const [enteredValue, setEnteredValue] = useState("");
 
   const deleteItemHandler = (enId) => {
     setEnterpriseList((prevItems) => {
@@ -30,6 +21,20 @@ function CreateEnterprise() {
       return updatedList;
     });
   };
+  useEffect(
+    (_) => {
+      console.log(enteredValue.length);
+      if (enteredValue.length !== 0) {
+        setEnterpriseList((item) => [
+          ...item,
+          { name: enteredValue, id: Math.random().toString() },
+        ]);
+        setEnteredValue("");
+        handleClose();
+      }
+    },
+    [enteredValue]
+  );
 
   return (
     <>
@@ -37,10 +42,8 @@ function CreateEnterprise() {
         show={show}
         handleClose={handleClose}
         handleShow={handleShow}
-        enName={setEnteredName}
-        enList={setEnterpriseList}
+        onSave={setEnteredValue}
       />
-
       <Box className="main">
         <Grid
           container
@@ -59,21 +62,18 @@ function CreateEnterprise() {
             >
               <div style={{ marginTop: "20%" }}>
                 <FontAwesomeIcon icon={faPlusCircle} size="2x" />
-
                 <p className="mt-2">Add Enterprise</p>
               </div>
             </Card>
           </Grid>
-
           {enterpriseList.length > 0 &&
             enterpriseList.map((i) => (
-              <Grid item xs={6} sm={4} md={3} lg={3}>
+              <Grid key={i.id} item xs={6} sm={4} md={3} lg={3}>
                 <MediaCard
                   name={i.name}
                   key={i.id}
                   id={i.id}
                   onDeleteItem={deleteItemHandler}
-                  onClick={handleRoute}
                 />
               </Grid>
             ))}

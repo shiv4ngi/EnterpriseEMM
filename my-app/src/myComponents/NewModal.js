@@ -3,20 +3,17 @@ import { useState } from "react";
 import "./CreateEnterprise.css";
 
 function NewModal(props) {
-  const [enteredValue, setEnteredValue] = useState("");
+  const [mEnteredValue, setMEnteredValue] = useState("");
 
   const handleChangeName = (e) => {
-    setEnteredValue(e.target.value);
+    // console.log("key pressed", e.target.value);
+    setMEnteredValue(e.target.value);
   };
 
   const saveEnterprise = (event) => {
     event.preventDefault();
-    props.handleClose();
-    props.enList((prevState) => [
-      ...prevState,
-      { name: enteredValue, id: Math.random().toString() },
-    ]);
-    setEnteredValue("");
+    props.onSave(mEnteredValue);
+    setMEnteredValue("");
   };
 
   return (
@@ -29,6 +26,7 @@ function NewModal(props) {
           <input
             type="text"
             placeholder="Enter Name"
+            value={mEnteredValue}
             onChange={handleChangeName}
             style={{ width: "-webkit-fill-available" }}
             maxLength="10"
@@ -46,7 +44,7 @@ function NewModal(props) {
             className="action-btn"
             variant="dark"
             onClick={saveEnterprise}
-            disabled={enteredValue.length > 0 ? "" : "disabled"}
+            disabled={mEnteredValue.length > 0 ? "" : "disabled"}
           >
             Save
           </Button>

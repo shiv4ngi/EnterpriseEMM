@@ -6,10 +6,12 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import "./MediaCard.css";
+import { useHistory } from "react-router-dom";
 
 function MediaCard(props) {
+  const history = useHistory();
   const cardHandler = () => {
-    // alert("Card Clicked!");
+    history.push("/configure");
   };
 
   const onEditHandler = () => {};
@@ -39,7 +41,7 @@ function MediaCard(props) {
         onClick={cardHandler}
       >
         <Typography
-          className="enterprise-heading text-center"
+          className="enterprise-heading"
           gutterBottom
           variant="h6"
           component="div"
