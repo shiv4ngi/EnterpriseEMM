@@ -10,11 +10,15 @@ import { useHistory } from "react-router-dom";
 
 function MediaCard(props) {
   const history = useHistory();
+
   const cardHandler = () => {
     history.push("/configure");
   };
 
-  const onEditHandler = () => {};
+  const onEditHandler = () => {
+    props.onUpdate();
+    props.onEditItem(props.id);
+  };
 
   const onDeleteHandler = () => {
     props.onDeleteItem(props.id);

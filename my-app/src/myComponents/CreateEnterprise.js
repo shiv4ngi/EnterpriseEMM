@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./CreateEnterprise.css";
 import NewModal from "./NewModal";
 import Box from "@mui/material/Box";
@@ -10,10 +10,26 @@ import { Card } from "@mui/material";
 
 function CreateEnterprise() {
   const [show, setShow] = useState(false);
+  const [editShow, setEditShow] = useState(false);
   const [enterpriseList, setEnterpriseList] = useState([]);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const editHandleClose = () => setEditShow(false);
+  const editHandleShow = () => setEditShow(true);
   const [enteredValue, setEnteredValue] = useState("");
+  const [editId, setEditId] = useState();
+
+  function editTask(id, newName) {
+    const editedTaskList = enterpriseList.map((task) => {
+      if (id === task.id) {
+        return { ...task, name: newName };
+      }
+      return task;
+    });
+    setEnterpriseList(editedTaskList);
+    setEnteredValue("");
+    editHandleClose();
+  }
 
   const deleteItemHandler = (enId) => {
     setEnterpriseList((prevItems) => {
@@ -21,20 +37,17 @@ function CreateEnterprise() {
       return updatedList;
     });
   };
-  useEffect(
-    (_) => {
-      console.log(enteredValue.length);
-      if (enteredValue.length !== 0) {
-        setEnterpriseList((item) => [
-          ...item,
-          { name: enteredValue, id: Math.random().toString() },
-        ]);
-        setEnteredValue("");
-        handleClose();
-      }
-    },
-    [enteredValue]
-  );
+
+  const addItemhandler = () => {
+    if (enteredValue.length !== 0) {
+      setEnterpriseList((item) => [
+        ...item,
+        { name: enteredValue, id: Math.random().toString() },
+      ]);
+      setEnteredValue("");
+      handleClose();
+    }
+  };
 
   return (
     <>
@@ -42,7 +55,19 @@ function CreateEnterprise() {
         show={show}
         handleClose={handleClose}
         handleShow={handleShow}
+        value={enteredValue}
         onSave={setEnteredValue}
+        onAdd={addItemhandler}
+        head="Add Enterprise"
+      />
+      <NewModal
+        show={editShow}
+        handleClose={editHandleClose}
+        handleShow={editHandleShow}
+        value={enteredValue}
+        onSave={setEnteredValue}
+        onUpdate={() => editTask(editId, enteredValue)}
+        head="Edit Enterprise"
       />
       <Box className="main">
         <Grid
@@ -74,6 +99,8 @@ function CreateEnterprise() {
                   key={i.id}
                   id={i.id}
                   onDeleteItem={deleteItemHandler}
+                  onEditItem={setEditId}
+                  onUpdate={() => editHandleShow()}
                 />
               </Grid>
             ))}
