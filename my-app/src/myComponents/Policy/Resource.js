@@ -10,52 +10,39 @@ import { useState } from "react";
 import "./../Policy/Policy.css";
 
 function Resource() {
-  const [applicationPolicy, setApplicationPolicy] = useState({
-    packageName: "",
-    installType: "",
-  });
-
-  const [NetworkConfigurations, setNetworkConfigurations] = useState({
-    GUID: "",
-    Name: "",
-    Type: "WiFi",
-    WiFi: {
-      SSID: "",
-      Security: "None",
-      AutoConnect: false,
-    },
-  });
-
-  const [statusReport, setStatusReport] = useState({
-    deviceSettingsEnabled: false,
-    networkInfoEnabled: false,
-  });
-
   const [resourcePolicy, setResourcePolicy] = useState({
     applications: [
-      applicationPolicy,
-      // {
-      //   packageName: applicationPolicy.packageName,
-      //   installType: applicationPolicy.installType,
-      // },
+      {
+        packageName: "",
+        installType: "",
+      },
     ],
     maximumTimeToLock: "",
     cameraDisabled: false,
     debuggingFeaturesAllowed: false,
     adjustVolumeDisabled: false,
     factoryResetDisabled: false,
-    openNetworkConfiguration: { NetworkConfigurations },
+    openNetworkConfiguration: {
+      NetworkConfigurations: [
+        {
+          GUID: "",
+          Name: "",
+          Type: "WiFi",
+          WiFi: {
+            SSID: "",
+            Security: "None",
+            AutoConnect: false,
+          },
+        },
+      ],
+    },
     uninstallAppsDisabled: false,
     bluetoothDisabled: false,
     statusReportingSettings: {
-      deviceSettingsEnabled: statusReport.deviceSettingsEnabled,
-      networkInfoEnabled: statusReport.networkInfoEnabled,
+      deviceSettingsEnabled: false,
+      networkInfoEnabled: false,
     },
   });
-
-  const handleChangeStatus = (prop) => (event) => {
-    setStatusReport({ ...statusReport, [prop]: event.target.checked });
-  };
 
   const handleChange = (prop) => (event) => {
     setResourcePolicy({ ...resourcePolicy, [prop]: event.target.value });
@@ -64,30 +51,70 @@ function Resource() {
     setResourcePolicy({ ...resourcePolicy, [prop]: event.target.checked });
   };
 
-  const handleChangeApplication = (e, prop) => {
-    setApplicationPolicy((prevtSate) => ({
-      ...prevtSate,
-      [prop]: e.target.value,
+  const handleChangeApplication = (name, event) => {
+    setResourcePolicy((prevState) => ({
+      ...prevState,
+      applications: prevState.applications.map((item, i) => {
+        return { ...item, [name]: event.target.value };
+      }),
     }));
   };
 
-  const handleNetworkChange = (e, networkKey) => {
-    setNetworkConfigurations((prevtSate) => ({
-      ...prevtSate,
-      [networkKey]: e.target.value,
+  const handleNetworkChange = (name, event) => {
+    setResourcePolicy((prevState) => ({
+      ...prevState,
+      openNetworkConfiguration: {
+        ...prevState.openNetworkConfiguration,
+        NetworkConfigurations:
+          prevState.openNetworkConfiguration.NetworkConfigurations.map(
+            (item, i) => {
+              return { ...item, [name]: event.target.value };
+            }
+          ),
+      },
+    }));
+  };
+
+  const handleNetworkChangeWifi = (name, event) => {
+    setResourcePolicy((prevState) => ({
+      ...prevState,
+      openNetworkConfiguration: {
+        ...prevState.openNetworkConfiguration,
+        NetworkConfigurations:
+          prevState.openNetworkConfiguration.NetworkConfigurations.map(
+            (item) => ({
+              ...item,
+              WiFi: { ...item.WiFi, [name]: event.target.value },
+            })
+          ),
+      },
+    }));
+  };
+
+  const handleNetworkChangeWifiRadio = (name, event) => {
+    setResourcePolicy((prevState) => ({
+      ...prevState,
+      openNetworkConfiguration: {
+        ...prevState.openNetworkConfiguration,
+        NetworkConfigurations:
+          prevState.openNetworkConfiguration.NetworkConfigurations.map(
+            (item) => ({
+              ...item,
+              WiFi: { ...item.WiFi, [name]: event.target.checked },
+            })
+          ),
+      },
     }));
   };
 
   const handleSubmit = () => {
-    console.log(applicationPolicy);
-    console.log(statusReport);
     console.log(resourcePolicy);
   };
 
   return (
     <>
       <Container
-        maxWidth="sm"
+        maxWidth="md"
         style={{ paddingTop: "8%", paddingBottom: "8%" }}
       >
         <Box
@@ -100,58 +127,77 @@ function Resource() {
           }}
         >
           <h1 className="heading">Resource Policy</h1>
-          <FormControl className="resource_form">
-            <h5>Application Policy</h5>
-            <TextField
-              className="input_text"
-              id="standard-basic"
-              label="Package Name"
-              variant="standard"
-              onChange={(e) => handleChangeApplication(e, "packageName")}
-            />
 
+          <FormControl className="resource_form">
+            <FormControl>
+              <h5 className="py-3">Application Policy</h5>
+
+              <TextField
+                className="input_text"
+                id="standard-basic"
+                label="Package Name"
+                variant="standard"
+                onChange={(e) => handleChangeApplication("packageName", e)}
+              />
+              {/* 
             <TextField
               className="input_text"
               id="standard-basic"
               label="Install Type"
               variant="standard"
-              onChange={(e) => handleChangeApplication(e, "installType")}
-            />
+              onChange={(e) => handleChangeApplication("installType", e)}
+            /> */}
 
-            <h5>Open Network Configuration</h5>
+              <Select
+                labelId="demo-simple-select-helper-label"
+                id="demo-simple-select-helper"
+                // label="Install type"
+                value={resourcePolicy.applications.installType}
+                defaultValue=""
+                onChange={(e) => handleChangeApplication("installType", e)}
+              >
+                <MenuItem value="INSTALL_TYPE_UNSPECIFIED">
+                  INSTALL_TYPE_UNSPECIFIED
+                </MenuItem>
+                <MenuItem value="PREINSTALLED">PREINSTALLED</MenuItem>
+                <MenuItem value="FORCE_INSTALLED">FORCE_INSTALLED</MenuItem>
+                <MenuItem value="BLOCKED">BLOCKED</MenuItem>
+                <MenuItem value="AVAILABLE">AVAILABLE</MenuItem>
+                <MenuItem value="REQUIRED_FOR_SETUP">
+                  REQUIRED_FOR_SETUP
+                </MenuItem>
+                <MenuItem value="KIOSK">KIOSK</MenuItem>
+              </Select>
+            </FormControl>
+            <h5 className="py-3">Open Network Configuration</h5>
             <TextField
               className="input_text"
               id="standard-basic"
               label="GUID"
               variant="standard"
-              onChange={(e) => handleNetworkChange(e, "GUID")}
+              onChange={(e) => handleNetworkChange("GUID", e)}
             />
             <TextField
               className="input_text"
               id="standard-basic"
               label="Name"
               variant="standard"
-              onChange={(e) => handleNetworkChange(e, "Name")}
+              onChange={(e) => handleNetworkChange("Name", e)}
             />
             <TextField
               className="input_text"
               id="standard-basic"
-              label="Type"
-              variant="standard"
-              onChange={(e) => handleNetworkChange(e, "Type")}
-              className="input_text"
-              id="standard-basic"
               label="Wifi SSID"
               variant="standard"
-              onChange={(e) => handleNetworkChange(e, "SSID")}
+              onChange={(e) => handleNetworkChangeWifi("SSID", e)}
             />
 
             <Select
               labelId="demo-simple-select-helper-label"
               id="demo-simple-select-helper"
               label="Security"
-              onChange={(e) => handleNetworkChange(e, "Security")}
-              // value={networkConfig[0].WiFi.Security}
+              defaultValue=""
+              onChange={(e) => handleNetworkChangeWifi("Security", e)}
             >
               <MenuItem value="None">None</MenuItem>
               <MenuItem value="WEP-PSK">WEP-PSK</MenuItem>
@@ -165,8 +211,7 @@ function Resource() {
             <FormControlLabel
               control={<Checkbox />}
               label="Autoconnect"
-              onChange={(e) => handleNetworkChange(e, "Autoconnect")}
-              // value={networkConfig[0].WiFi.AutoConnect}
+              onChange={(e) => handleNetworkChangeWifiRadio("AutoConnect", e)}
             />
             <TextField
               className="input_text"
@@ -203,12 +248,28 @@ function Resource() {
             <FormControlLabel
               control={<Checkbox />}
               label="Device Settings Enable"
-              onChange={handleChangeStatus("adjustVolumeDisabled")}
+              onChange={(e) =>
+                setResourcePolicy((prevState) => ({
+                  ...prevState,
+                  statusReportingSettings: {
+                    ...prevState.statusReportingSettings,
+                    deviceSettingsEnabled: e.target.checked,
+                  },
+                }))
+              }
             />
             <FormControlLabel
               control={<Checkbox />}
               label="Network Info Enable"
-              onChange={handleChangeStatus("adjustVolumeDisabled")}
+              onChange={(e) =>
+                setResourcePolicy((prevState) => ({
+                  ...prevState,
+                  statusReportingSettings: {
+                    ...prevState.statusReportingSettings,
+                    networkInfoEnabled: e.target.checked,
+                  },
+                }))
+              }
             />
             <FormControlLabel
               control={<Checkbox />}
