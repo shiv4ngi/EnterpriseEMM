@@ -12,12 +12,12 @@ function CreateEnterprise() {
   const [show, setShow] = useState(false);
   const [editShow, setEditShow] = useState(false);
   const [enterpriseList, setEnterpriseList] = useState([]);
+  const [enteredValue, setEnteredValue] = useState("");
+  const [editId, setEditId] = useState();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const editHandleClose = () => setEditShow(false);
   const editHandleShow = () => setEditShow(true);
-  const [enteredValue, setEnteredValue] = useState("");
-  const [editId, setEditId] = useState();
 
   function editTask(id, newName) {
     const editedTaskList = enterpriseList.map((task) => {

@@ -5,16 +5,27 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import "./myComponents/Configure.css";
+import { useHistory } from "react-router-dom";
 
 function ConfigureCard(props) {
+  const history = useHistory();
+
+  const cardHandler = () => {
+    history.push("/policy");
+  };
+
   return (
-    <Card className="conCard" sx={{ maxWidth: 180, minWidth: 180 }}>
+    <Card
+      className="conCard"
+      sx={{ maxWidth: 180, minWidth: 180 }}
+      onClick={cardHandler}
+    >
       <CardActionArea>
         <CardMedia
           component="img"
           height="110"
           image={props.img}
-          alt="policies"
+          alt="policies&devices"
         />
         <CardContent>
           <Typography

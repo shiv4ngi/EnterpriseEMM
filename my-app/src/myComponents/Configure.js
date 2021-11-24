@@ -3,6 +3,8 @@ import "./Configure.css";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import ConfigureCard from "../ConfigureCard";
+import po from "../assets/policies.png";
+import dev from "../assets/dev.jpg";
 
 function Configure() {
   return (
@@ -18,10 +20,10 @@ function Configure() {
           alignItems="center"
         >
           <Grid item xs={12} sm={6} className="policyCard">
-            <ConfigureCard img="./policies.png" heading="Policies" />
+            <ConfigureCard img={po} heading="Policies" />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <ConfigureCard img="./dev.jpg" heading="Devices" />
+            <ConfigureCard img={dev} heading="Devices" />
           </Grid>
         </Grid>
       </Box>

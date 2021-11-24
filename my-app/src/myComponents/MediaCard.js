@@ -6,13 +6,13 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import "./MediaCard.css";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 function MediaCard(props) {
   const history = useHistory();
 
   const cardHandler = () => {
-    history.push("/configure");
+    history.push("/configure/" + props.id);
   };
 
   const onEditHandler = () => {
@@ -26,35 +26,37 @@ function MediaCard(props) {
 
   return (
     <Card className="mcard" sx={{ maxWidth: 150, maxHeight: 150 }}>
-      <CardMedia
-        className="card-media"
-        component="img"
-        height="80"
-        image="./cloud.jpg"
-        alt="enterprise"
-        style={{
-          cursor: "pointer",
-          borderRadius: "3% 3% 0 0",
-          opacity: "0.8",
-        }}
-        onClick={cardHandler}
-      />
-      <CardContent
-        className="py-0 mt-1"
-        style={{ cursor: "pointer" }}
-        onClick={cardHandler}
-      >
-        <Typography
-          className="enterprise-heading"
-          gutterBottom
-          variant="h6"
-          component="div"
-          fontSize={15}
-          color="#9a6ec4"
+      <Link to={"/configure/" + props.name}>
+        <CardMedia
+          className="card-media"
+          component="img"
+          height="80"
+          image="./cloud.jpg"
+          alt="enterprise"
+          style={{
+            cursor: "pointer",
+            borderRadius: "3% 3% 0 0",
+            opacity: "0.8",
+          }}
+          onClick={cardHandler}
+        />
+        <CardContent
+          className="py-0 mt-1"
+          style={{ cursor: "pointer" }}
+          onClick={cardHandler}
         >
-          {props.name}
-        </Typography>
-      </CardContent>
+          <Typography
+            className="enterprise-heading"
+            gutterBottom
+            variant="h6"
+            component="div"
+            fontSize={15}
+            color="#9a6ec4"
+          >
+            {props.name}
+          </Typography>
+        </CardContent>
+      </Link>
       <CardActions className="py-0">
         <Button onClick={onEditHandler} style={{ fontSize: "12px" }}>
           Edit
