@@ -4,6 +4,8 @@
   font-size: 15px;
   text-decoration: none;
   text-align: center;
+  color: #385ac0 !important;
+  text-decoration: none !important;
 }
 
 .mcard:hover {

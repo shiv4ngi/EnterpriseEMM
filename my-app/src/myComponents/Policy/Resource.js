@@ -126,7 +126,7 @@ function Resource() {
             padding: "4%",
           }}
         >
-          <h1 className="heading">Resource Policy</h1>
+          <h1 className="heading pallette">Resource Policy</h1>
 
           <FormControl className="resource_form">
             <FormControl>
@@ -139,19 +139,10 @@ function Resource() {
                 variant="standard"
                 onChange={(e) => handleChangeApplication("packageName", e)}
               />
-              {/* 
-            <TextField
-              className="input_text"
-              id="standard-basic"
-              label="Install Type"
-              variant="standard"
-              onChange={(e) => handleChangeApplication("installType", e)}
-            /> */}
-
+              <label className="py-2 pallette">Install Type</label>
               <Select
                 labelId="demo-simple-select-helper-label"
                 id="demo-simple-select-helper"
-                // label="Install type"
                 value={resourcePolicy.applications.installType}
                 defaultValue=""
                 onChange={(e) => handleChangeApplication("installType", e)}
@@ -191,7 +182,7 @@ function Resource() {
               variant="standard"
               onChange={(e) => handleNetworkChangeWifi("SSID", e)}
             />
-
+            <label className="py-2 pallette">Security</label>
             <Select
               labelId="demo-simple-select-helper-label"
               id="demo-simple-select-helper"

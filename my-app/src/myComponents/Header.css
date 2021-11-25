@@ -4,8 +4,8 @@
 }
 
 .navbar {
-  background: linear-gradient(to right, #48436b, #6c5b7b, #ddb6d4);
-  /* background: linear-gradient(to left, #e8cbc0, #636fa4); */
+  background-color: #293b5f;
+  /* background: linear-gradient(to right, #48436b, #6c5b7b, #ddb6d4); */
 }
 
 .login-logo {

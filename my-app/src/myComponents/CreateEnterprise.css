@@ -13,7 +13,7 @@
 }
 
 .create-box :hover {
-  color: #583d72;
+  color: #293b5f;
   text-shadow: 0 0 8px rgb(156, 141, 141);
 }
 
@@ -32,15 +32,15 @@
 }
 
 .modal-content {
-  background-color: #efe5f6 !important;
-  color: #583d72;
+  color: #344fa1;
+  background-color: #e8e8ff !important;
 }
 
 .modal input:focus {
   outline: none;
-  border-color: #b464be;
+  border-color: #344fa1;
 }
 
 .action-btn {
-  background: linear-gradient(to top, #20002c, #cbb4d4);
+  background-color: #344fa1 !important;
 }
