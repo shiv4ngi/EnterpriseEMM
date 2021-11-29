@@ -4,8 +4,26 @@ import CreateEnterprise from "./myComponents/CreateEnterprise";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Configure from "./myComponents/Configure";
 import Resource from "./myComponents/Policy/Resource";
-// import ApplicationPolicy from "./myComponents/Policies/ApplicationPolicy";
-// import ResourcePolicy from "./myComponents/Policies/ResourcePolicy";
+import Devices from "./myComponents/Devices/Devices";
+// import firebaseApp from "./Config";
+
+import { initializeApp } from "firebase/app";
+
+// const settings = { timestampsInSnapshots: true };
+
+const firebaseConfig = {
+  apiKey: "AIzaSyArErEXX26kOsEpeWhabTcc_b3XT-T2q1o",
+  authDomain: "enterprise-8efcb.firebaseapp.com",
+  projectId: "enterprise-8efcb",
+  storageBucket: "enterprise-8efcb.appspot.com",
+  messagingSenderId: "1087080374663",
+  appId: "1:1087080374663:web:d73a125d2436419817f322",
+  measurementId: "G-4D97N2R8XX",
+};
+
+// Initialize Firebase
+const firebaseApp = initializeApp(firebaseConfig);
+console.log(firebaseApp);
 
 function App() {
   return (
@@ -16,8 +34,7 @@ function App() {
           <Route path="/" exact component={CreateEnterprise} />
           <Route path="/configure/:name" exact component={Configure} />
           <Route path="/policy" exact component={Resource} />
-          {/* <Route path="/app_policies" exact component={ApplicationPolicy} />
-          <Route path="/resource_policies" exact component={ResourcePolicy} /> */}
+          <Route path="/device" exact component={Devices} />
         </Switch>
       </BrowserRouter>
     </>

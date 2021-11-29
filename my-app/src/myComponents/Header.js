@@ -30,7 +30,7 @@ function Header() {
               aria-label="Search"
             />
 
-            <Button variant="outline-light">
+            <Button style={{ marginLeft: "3%" }} variant="outline-light">
               <FontAwesomeIcon icon={faSearch} />
             </Button>
           </Form>

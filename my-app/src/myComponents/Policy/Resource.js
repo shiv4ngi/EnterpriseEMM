@@ -1,4 +1,5 @@
 import { Button, FormControl } from "@mui/material";
+import InputLabel from "@mui/material/InputLabel";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -8,6 +9,19 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { useState } from "react";
 import "./../Policy/Policy.css";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  query,
+  orderBy,
+  limit,
+  onSnapshot,
+  setDoc,
+  updateDoc,
+  doc,
+  serverTimestamp,
+} from "firebase/firestore";
 
 function Resource() {
   const [resourcePolicy, setResourcePolicy] = useState({
@@ -109,7 +123,14 @@ function Resource() {
 
   const handleSubmit = () => {
     console.log(resourcePolicy);
+    try {
+      addDoc(collection(getFirestore(), "policies"), resourcePolicy);
+    } catch (error) {
+      console.error("Error writing new message to Firebase Database", error);
+    }
   };
+
+  const getPolicies = (_) => {};
 
   return (
     <>
@@ -129,20 +150,23 @@ function Resource() {
           <h1 className="heading pallette">Resource Policy</h1>
 
           <FormControl className="resource_form">
-            <FormControl>
-              <h5 className="py-3">Application Policy</h5>
+            <h5 className="py-3">Application Policy</h5>
 
-              <TextField
-                className="input_text"
-                id="standard-basic"
-                label="Package Name"
-                variant="standard"
-                onChange={(e) => handleChangeApplication("packageName", e)}
-              />
-              <label className="py-2 pallette">Install Type</label>
+            <TextField
+              className="input_text"
+              id="standard-basic"
+              label="Package Name"
+              variant="standard"
+              onChange={(e) => handleChangeApplication("packageName", e)}
+            />
+            <FormControl>
+              <InputLabel id="demo-simple-select-label">
+                Install Type
+              </InputLabel>
               <Select
                 labelId="demo-simple-select-helper-label"
                 id="demo-simple-select-helper"
+                label="Install Type"
                 value={resourcePolicy.applications.installType}
                 defaultValue=""
                 onChange={(e) => handleChangeApplication("installType", e)}
@@ -182,23 +206,25 @@ function Resource() {
               variant="standard"
               onChange={(e) => handleNetworkChangeWifi("SSID", e)}
             />
-            <label className="py-2 pallette">Security</label>
-            <Select
-              labelId="demo-simple-select-helper-label"
-              id="demo-simple-select-helper"
-              label="Security"
-              defaultValue=""
-              onChange={(e) => handleNetworkChangeWifi("Security", e)}
-            >
-              <MenuItem value="None">None</MenuItem>
-              <MenuItem value="WEP-PSK">WEP-PSK</MenuItem>
-              <MenuItem value="WPA-PSK">WPA-PSK</MenuItem>
-              <MenuItem value="WPA-EAP">WPA-EAP</MenuItem>
-              <MenuItem value="WPA2-PSK">WPA2-PSK</MenuItem>
-              <MenuItem value="WPA2-Enterprise">WPA2-Enterprise</MenuItem>
-              <MenuItem value="WPA3-PSK">WPA3-PSK</MenuItem>
-              <MenuItem value="WPA3-Enterprise">WPA3-Enterprise</MenuItem>
-            </Select>
+            <FormControl>
+              <InputLabel id="demo-simple-select-label">Security</InputLabel>
+              <Select
+                labelId="demo-simple-select-helper-label"
+                id="demo-simple-select-helper"
+                label="Security"
+                defaultValue=""
+                onChange={(e) => handleNetworkChangeWifi("Security", e)}
+              >
+                <MenuItem value="None">None</MenuItem>
+                <MenuItem value="WEP-PSK">WEP-PSK</MenuItem>
+                <MenuItem value="WPA-PSK">WPA-PSK</MenuItem>
+                <MenuItem value="WPA-EAP">WPA-EAP</MenuItem>
+                <MenuItem value="WPA2-PSK">WPA2-PSK</MenuItem>
+                <MenuItem value="WPA2-Enterprise">WPA2-Enterprise</MenuItem>
+                <MenuItem value="WPA3-PSK">WPA3-PSK</MenuItem>
+                <MenuItem value="WPA3-Enterprise">WPA3-Enterprise</MenuItem>
+              </Select>
+            </FormControl>
             <FormControlLabel
               control={<Checkbox />}
               label="Autoconnect"

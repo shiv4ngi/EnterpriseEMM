@@ -32,7 +32,7 @@
 }
 
 .modal-content {
-  color: #344fa1;
+  color: #293b5f;
   background-color: #e8e8ff !important;
 }
 
@@ -42,5 +42,18 @@
 }
 
 .action-btn {
-  background-color: #344fa1 !important;
+  background-color: #293b5f !important;
+  border: none;
+  border-radius: 10px !important;
+  color: #fff;
+  display: inline-flex;
+  font-size: 0.75rem;
+  font-weight: 500;
+  height: 40px;
+  justify-content: center;
+  letter-spacing: 0.0625rem;
+  /* line-height: 0.875rem; */
+  text-align: center;
+  min-width: 100px;
+  text-transform: uppercase;
 }

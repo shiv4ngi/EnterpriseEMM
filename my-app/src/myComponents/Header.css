@@ -1,11 +1,13 @@
 .brand {
   font-weight: 400px;
   color: #fff;
+  margin: 0.25%;
+  text-transform: uppercase;
+  letter-spacing: 0.0625rem;
 }
 
 .navbar {
   background-color: #293b5f;
-  /* background: linear-gradient(to right, #48436b, #6c5b7b, #ddb6d4); */
 }
 
 .login-logo {

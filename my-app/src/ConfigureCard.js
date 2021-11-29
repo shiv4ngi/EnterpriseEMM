@@ -11,7 +11,11 @@ function ConfigureCard(props) {
   const history = useHistory();
 
   const cardHandler = () => {
-    history.push("/policy");
+    if (props.heading === "Policies") {
+      history.push("/policy");
+    } else {
+      history.push("/device");
+    }
   };
 
   return (
