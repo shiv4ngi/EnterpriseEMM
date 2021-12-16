@@ -2,8 +2,8 @@
   font-weight: 400px;
   color: #fff;
   margin: 0.25%;
-  text-transform: uppercase;
-  letter-spacing: 0.0625rem;
+  /* text-transform: uppercase; */
+  /* letter-spacing: 0.0625rem; */
 }
 
 .navbar {

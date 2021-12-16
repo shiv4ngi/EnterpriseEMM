@@ -5,11 +5,8 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Configure from "./myComponents/Configure";
 import Resource from "./myComponents/Policy/Resource";
 import Devices from "./myComponents/Devices/Devices";
-// import firebaseApp from "./Config";
-
 import { initializeApp } from "firebase/app";
-
-// const settings = { timestampsInSnapshots: true };
+import AllPolicy from "./myComponents/Policy/AllPolicy";
 
 const firebaseConfig = {
   apiKey: "AIzaSyArErEXX26kOsEpeWhabTcc_b3XT-T2q1o",
@@ -34,6 +31,8 @@ function App() {
           <Route path="/" exact component={CreateEnterprise} />
           <Route path="/configure/:name" exact component={Configure} />
           <Route path="/policy" exact component={Resource} />
+          <Route path="/all-policy" exact component={AllPolicy} />
+          {/* <Route path="/policy/:pname" exact component={Devices} /> */}
           <Route path="/device" exact component={Devices} />
         </Switch>
       </BrowserRouter>

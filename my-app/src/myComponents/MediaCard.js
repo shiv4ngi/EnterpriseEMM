@@ -49,7 +49,7 @@ function MediaCard(props) {
             className="enterprise-heading"
             gutterBottom
             variant="h6"
-            component="div"
+            component="p"
             fontSize={15}
             color="#9a6ec4"
           >

@@ -74,7 +74,7 @@ function CreateEnterprise() {
           container
           rowSpacing={2}
           columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-          style={{ marginTop: "2%" }}
+          style={{ marginTop: "100px" }}
         >
           <Grid item xs={6} sm={4} md={3} lg={3}>
             <Card

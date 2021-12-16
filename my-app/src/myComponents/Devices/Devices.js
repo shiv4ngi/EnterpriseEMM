@@ -39,54 +39,57 @@ function Devices() {
     //   },
     // },
 
-    applicationReports: [
-      {
-        packageName: "",
-        versionName: "",
-        versionCode: null,
 
-        displayName: "",
 
-        applicationSource: "",
-        state: "",
-      },
-    ],
 
-    networkInfo: {
-      imei: "",
-      // meid: "",
-      wifiMacAddress: "",
-    },
-    memoryInfo: {
-      totalRam: "",
-      totalInternalStorage: "",
-    },
-    memoryEvents: [
-      {
-        eventType: "",
-        // "createTime": "",
-        byteCount: "",
-      },
-    ],
-    powerManagementEvents: [
-      {
-        eventType: "",
-        // "createTime": string,
-        batteryLevel: null,
-      },
-    ],
 
-    deviceSettings: {
-      isDeviceSecure: false,
-      unknownSourcesEnabled: false,
-      developmentSettingsEnabled: false,
-      adbEnabled: false,
-      isEncrypted: false,
-      verifyAppsEnabled: false,
-    },
 
-    ownership: "",
-  });
+  //   applicationReports: [
+  //     {
+  //       packageName: "",
+  //       versionName: "",
+  //       versionCode: null,
+  //       displayName: "",
+  //       applicationSource: "",
+  //       state: "",
+  //     },
+  //   ],
+
+  //   networkInfo: {
+  //     imei: "",
+  //     wifiMacAddress: "",
+  //   },
+  //   memoryInfo: {
+  //     totalRam: "",
+  //     totalInternalStorage: "",
+  //   },
+  //   memoryEvents: [
+  //     {
+  //       eventType: "",
+  //       // "createTime": "",
+  //       byteCount: "",
+  //     },
+  //   ],
+  //   powerManagementEvents: [
+  //     {
+  //       eventType: "",
+  //       // "createTime": string,
+  //       batteryLevel: null,
+  //     },
+  //   ],
+
+  //   deviceSettings: {
+  //     isDeviceSecure: false,
+  //     unknownSourcesEnabled: false,
+  //     developmentSettingsEnabled: false,
+  //     adbEnabled: false,
+  //     isEncrypted: false,
+  //     verifyAppsEnabled: false,
+  //   },
+
+  //   ownership: "",
+  }
+  );
 
   const handleChange = (prop) => (event) => {
     setDevice({ ...device, [prop]: event.target.value });

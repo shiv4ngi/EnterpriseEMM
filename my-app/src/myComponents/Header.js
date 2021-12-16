@@ -15,7 +15,7 @@ function Header() {
   };
 
   return (
-    <Navbar className="navbar" variant="dark">
+    <Navbar className="navbar" variant="dark" fixed="top">
       <Container fluid>
         <Navbar.Brand className="brand" href="/">
           Enterprise Mobility Management
