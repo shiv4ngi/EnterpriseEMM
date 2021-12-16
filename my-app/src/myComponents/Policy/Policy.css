@@ -1,0 +1,16 @@
+.heading {
+  padding-bottom: 2rem;
+}
+.MuiFormControl-root {
+  padding-bottom: 1.5rem !important;
+  color: #555;
+}
+.submitBtn {
+  margin-top: 3rem !important;
+}
+.resource_form {
+  width: 100%;
+}
+.pallette {
+  color: #555;
+}

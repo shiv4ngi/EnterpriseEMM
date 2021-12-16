@@ -15,7 +15,7 @@ function Header() {
   };
 
   return (
-    <Navbar className="navbar" variant="dark">
+    <Navbar className="navbar" variant="dark" fixed="top">
       <Container fluid>
         <Navbar.Brand className="brand" href="/">
           Enterprise Mobility Management
@@ -30,7 +30,7 @@ function Header() {
               aria-label="Search"
             />
 
-            <Button variant="outline-light">
+            <Button style={{ marginLeft: "3%" }} variant="outline-light">
               <FontAwesomeIcon icon={faSearch} />
             </Button>
           </Form>
