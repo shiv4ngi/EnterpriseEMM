@@ -53,6 +53,7 @@ function AllPolicy() {
                 </CardContent>
                 <CardActions>
                   <Button size="small">Show policy</Button>
+                  <Button size="small">Delete policy</Button>
                 </CardActions>
               </Card>
             </Grid>
